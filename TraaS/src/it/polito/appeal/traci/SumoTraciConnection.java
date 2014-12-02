@@ -23,6 +23,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.File;
 import java.net.ConnectException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
@@ -240,13 +241,10 @@ public class SumoTraciConnection {
 			args.add(Integer.toString(randomSeed));
 		}
 
-		String[] argsArray = new String[args.size()];
-		args.toArray(argsArray);
-		
-		
-		sumoProcess = Runtime.getRuntime().exec(argsArray);
-
-		
+		String sumoHome = new File(sumoEXE).getParentFile().getParentFile().getAbsolutePath();
+		ProcessBuilder processBuilder = new ProcessBuilder(args);
+		processBuilder.environment().put("SUMO_HOME", sumoHome);
+		sumoProcess = processBuilder.start();
 
 		StreamLogger errStreamLogger = new StreamLogger(sumoProcess.getErrorStream(), "SUMO-err:");
 		StreamLogger outStreamLogger = new StreamLogger(sumoProcess.getInputStream(), "SUMO-out:");
