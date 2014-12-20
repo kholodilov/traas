@@ -244,6 +244,7 @@ public class SumoTraciConnection {
 		String sumoHome = new File(sumoEXE).getParentFile().getParentFile().getAbsolutePath();
 		ProcessBuilder processBuilder = new ProcessBuilder(args);
 		processBuilder.environment().put("SUMO_HOME", sumoHome);
+		processBuilder.environment().remove("DYLD_LIBRARY_PATH");
 		sumoProcess = processBuilder.start();
 
 		StreamLogger errStreamLogger = new StreamLogger(sumoProcess.getErrorStream(), "SUMO-err:");
