@@ -81,4 +81,18 @@ public class ArealDetector {
 		return new SumoCommand(Constants.CMD_GET_AREAL_DETECTOR_VARIABLE, Constants.LAST_STEP_OCCUPANCY, loopID, Constants.RESPONSE_GET_AREAL_DETECTOR_VARIABLE, Constants.TYPE_DOUBLE);
 	}
 	
+  
+  /**
+   * Returns the number of vehicles that were on the named induction loop
+   * within the last simulation step.
+   * 
+   * @param loopID
+   *            a string identifying the induction loop
+   * @return total number of vehicles
+   */
+
+  public static SumoCommand getLastStepVehicleNumber(String loopID){
+    return new SumoCommand(Constants.CMD_GET_AREAL_DETECTOR_VARIABLE, Constants.LAST_STEP_VEHICLE_NUMBER, loopID, Constants.RESPONSE_GET_AREAL_DETECTOR_VARIABLE, Constants.TYPE_INTEGER);
+  }
+
 }
